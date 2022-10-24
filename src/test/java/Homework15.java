@@ -10,7 +10,7 @@ import java.time.Duration;
 public class Homework15 {
 
     @Test
-    public static void LoginvalidEmailvalidPasswordTest ()throws InterruptedException
+    public static void Search()throws InterruptedException
     {
 
         WebDriver driver = new ChromeDriver();
@@ -44,7 +44,7 @@ public class Homework15 {
         WebElement songsTitle = driver.findElement( By.className("title"));
         String expectedSongName = "pluto";
         String songName = driver.findElement( By.className("title")).getText();
-        if(expectedSongName==songName)
+        if(expectedSongName.equals(songName))
             System.out.println("Yes, pluto song is on the list");
         else
             System.out.println("pluto song is not found!");
