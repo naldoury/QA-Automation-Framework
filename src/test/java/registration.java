@@ -21,7 +21,9 @@ public class registration {
             driver.get(url);
             Assert.assertEquals(driver.getCurrentUrl(), url);
 
-            WebElement registrationLinkElement=driver.findElement(new By.ById("hel"));
+            WebElement registrationLinkElement= driver.findElement(new By.ById("hel"));
+            //WebElement registrationLinkElement=driver.findElement(new By.ById("button"));
+
             registrationLinkElement.click();
 
 
