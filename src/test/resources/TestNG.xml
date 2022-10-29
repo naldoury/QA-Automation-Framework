@@ -9,6 +9,7 @@
             <class name="BaseTest"/>
             <class name="registration"/>
             <class name="Homework15"/>
+            <class name="Homework16"/>
 
         </classes>
     </test>
