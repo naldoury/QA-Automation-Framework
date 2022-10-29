@@ -33,9 +33,9 @@ public class Homework16 {
 
         WebElement submitButton = driver.findElement( By.xpath("//*[@type='submit']"));
         submitButton.submit();
-        WebElement avatarIcon = driver.findElement( By.className("avatar"));
+        //WebElement avatarIcon = driver.findElement( By.className("avatar"));
         //can u pls tell me what is wrong in this? xpath avatar
-        //WebElement avatarIcon = driver.findElement( By.xpath("//*[@'avatar']"));
+        WebElement avatarIcon = driver.findElement( By.xpath("//img[contains(@alt,'Avatar of')]"));
         Assert.assertTrue(avatarIcon.isDisplayed());
 
         Thread.sleep(2000);
