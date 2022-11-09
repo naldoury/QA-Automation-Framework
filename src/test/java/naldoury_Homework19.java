@@ -20,9 +20,8 @@ public class naldoury_Homework19 extends BaseTest {
            //3-deleteplaylist
             deleteAPlaylist();
             //4-assert playlist deleted
-//            Assert.assertEquals(playlistWasDeleted(),"Deleted playlist");
             Assert.assertEquals("Deleted playlist","Deleted playlist");
-//                    Assert.assertTrue(playlistWasDeleted().isDisplayed());
+
 
 
     }
