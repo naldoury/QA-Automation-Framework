@@ -20,9 +20,13 @@ public class naldoury_Homework19 extends BaseTest {
            //3-deleteplaylist
             deleteAPlaylist();
             Thread.sleep(2000);
-//            lets add this because there is a delay before the pop up message shows up
             //4-assert playlist deleted
             Assert.assertTrue(playlistWasDeletedMessage().contains("Deleted playlist"));
+
+
+
+
+
     }
     public void selectPlaylist() throws InterruptedException {
 
