@@ -19,30 +19,26 @@ public class naldoury_Homework19 extends BaseTest {
             selectPlaylist();
            //3-deleteplaylist
             deleteAPlaylist();
+            Thread.sleep(2000);
+//            lets add this because there is a delay before the pop up message shows up
             //4-assert playlist deleted
-            Assert.assertEquals("Deleted playlist","Deleted playlist");
-
-
-
+            Assert.assertTrue(playlistWasDeletedMessage().contains("Deleted playlist"));
     }
     public void selectPlaylist() throws InterruptedException {
 
             WebElement selectAPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
             selectAPlaylist.click();
-            Thread.sleep(5000);
+            Thread.sleep(2000);
         }
-
         private void deleteAPlaylist() throws InterruptedException {
-
             WebElement deletethisPlaylist = driver.findElement(new By.ByCssSelector(".btn-delete-playlist"));
 //            Thread.sleep(2000);
             deletethisPlaylist.click();
-            Thread.sleep(4000);
+            //lets remove the other thread sleeps
 }
-        private String playlistWasDeleted() throws InterruptedException {
-            return driver.findElement(By.cssSelector("div.success.show")).getText();
+        private String playlistWasDeletedMessage() {
+        return driver.findElement(By.cssSelector("div.success.show")).getText();
     }
-
     }
 
 
