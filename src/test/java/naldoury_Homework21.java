@@ -13,7 +13,7 @@ public class naldoury_Homework21 extends BaseTest {
 
 //    1-login
         login();
-//    2-select and rename Playlist
+//    2-select, rename Playlist and Assert
         DoubleClickChoosePlayList();
         renamePlayList();
         Assert.assertTrue(DoesPlayListExist());
