@@ -5,9 +5,6 @@ import org.testng.annotations.Test;
 
 public class naldoury_Homework23 extends BaseTest{
 
-//    WebDriver driver;
-//    WebDriverWait wait;
-
 
 @Test
     public void LoginValidEmailPasswordVerification(){

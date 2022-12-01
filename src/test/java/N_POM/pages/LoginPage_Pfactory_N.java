@@ -7,10 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage_Pfactory_N extends BasePage_N {
 
-    //Declaring the drivers
-//    WebDriver driver;
-//    WebDriverWait wait;
-
   //  By emailFieldLocator = By.cssSelector("[type='email']");
     @FindBy(css= "[type='email']")
             WebElement emailField;
