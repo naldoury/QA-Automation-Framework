@@ -15,8 +15,9 @@ dependencies {
 }
 
 test {
-    useTestNG() {
-        suites "src/test/resources/TestNG_HW22N.xml"
-        systemProperty "browser", System.getProperty("browser")
+    useTestNG() { //this must be in useTestNG
+        suites "src/test/resources/TestNG_HW24N.xml" //this line we need to edit for grid got it
+        systemProperty "theBrowser", System.getProperty("theBrowser")
+//        systemProperty "browser", System.getProperty("browser") old
     }
 }
