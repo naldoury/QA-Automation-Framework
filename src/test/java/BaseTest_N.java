@@ -21,6 +21,7 @@ public class BaseTest_N {
     WebDriverWait wait;
     Actions actions;
 
+    static ThreadLocal<WebDriver> threadDriver;
 
 
     @BeforeSuite
@@ -31,8 +32,6 @@ public class BaseTest_N {
         } else {
             System.setProperty("webdriver.chrome.driver", "chromedriver");
         }
-
-
     }
 
     @BeforeMethod
@@ -41,26 +40,38 @@ public class BaseTest_N {
     // Make baseURL parameter optional, if it is null, then set it to something)
     public void launchBrowser(@Optional String baseURL) throws MalformedURLException {
         if (baseURL == null)
+
             baseURL ="https://bbb.testpro.io";
 
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "chrome");
+//        driver = pickAbrowser(System.getProperty("theBrowser"));
+        threadDriver = new ThreadLocal<>();
+        driver = pickAbrowser(System.getProperty("browser"));
+        threadDriver.set(driver);
 
-        driver = pickAbrowser(System.getProperty("theBrowser"));
-        actions = new Actions(driver);
+//        actions = new Actions(getDriver());
+        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
         // Wait for an element to show up for max of X seconds
         // implicitlyWait(Duration.ofSeconds(60) will wait for UP to 60 seconds
         // if element comes up after 1 second, it will move on
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        getDriver().manage().window().maximize();
         // thread.sleep(60000) -- will wait 60s always
         url = baseURL;
-        driver.get(url);
+        getDriver().get(url);
 
+    }
+    public  WebDriver getDriver(){
+        return threadDriver.get();
     }
     private WebDriver pickAbrowser(String theBrowser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURI = "http://10.0.0.45:4444";
+//        getDriver().get(url);
 
         switch (theBrowser){
+
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
                 return driver = new FirefoxDriver();
@@ -82,47 +93,23 @@ public class BaseTest_N {
         }
     }
 
-//    private WebDriver pickBrowser(String browser) throws MalformedURLException {
-//        DesiredCapabilities caps = new DesiredCapabilities();
-//        String gridURL = "http://192.168.1.2:4444";
-//        switch (browser){
-//            case "firefox":
-//                System.setProperty("webdriver.gecko.driver", "geckodriver");
-//                return driver = new FirefoxDriver();
-//            case "safari":
-//                return driver = new SafariDriver();
-//            case "grid-safari":
-//                caps.setCapability("browserName", "safari");
-//                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
-//            case "grid-firefox":
-//                caps.setCapability("browserName", "firefox");
-//                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
-//            case "grid-chrome":
-//                caps.setCapability("browserName", "chrome");
-//                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
-//            default:
-//                return driver = new ChromeDriver();
-//        }
-//    }
-
     @AfterMethod
     public void tearDownBrowser() {
-        driver.quit();
+        getDriver().quit();
+        threadDriver.remove();
     }
-
     public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+        WebElement submitButton = getDriver().findElement(By.cssSelector("[type='submit']"));
         submitButton.click();
     }
-
     public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement emailField = getDriver().findElement(By.cssSelector("[type='email']"));
         emailField.click();
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement passwordField = getDriver().findElement(By.cssSelector("[type='password']"));
         passwordField.click();
         passwordField.sendKeys(password);
 
