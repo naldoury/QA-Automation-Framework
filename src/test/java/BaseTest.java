@@ -47,7 +47,7 @@ public class BaseTest {
         if (baseURL == null)
             baseURL ="https://bbb.testpro.io";
         //driver = new ChromeDriver();
-        System.setProperty("webdriver.gecko.driver", "geckodriver");
+//        System.setProperty("webdriver.gecko.driver", "geckodriver");
         //driver = new FirefoxDriver();
         //driver = new SafariDriver();
         driver = pickBrowser(System.getProperty("browser"));
@@ -78,7 +78,7 @@ public class BaseTest {
         String gridURL = "http://192.168.1.2:4444";
         switch (browser){
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "geckodriver");
+                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
                 return driver = new FirefoxDriver();
             case "safari":
                 return driver = new SafariDriver();
